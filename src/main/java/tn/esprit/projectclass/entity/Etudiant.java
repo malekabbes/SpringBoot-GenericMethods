@@ -1,7 +1,7 @@
 package tn.esprit.projectclass.entity;
 
 import javax.persistence.*;
-
+import java.util.Set;
 @Entity
 public class Etudiant {
     @Id
@@ -10,8 +10,29 @@ public class Etudiant {
     private String nomE;
     @Enumerated(EnumType.STRING)
     private Option option;
+    @ManyToOne
+    private Departement department;
+    @ManyToMany(targetEntity=Equipe.class)
+    private Set equipeSet;
+
+    public Departement getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Departement department) {
+        this.department = department;
+    }
+
+    public Set getEquipeSet() {
+        return equipeSet;
+    }
+
+    public void setEquipeSet(Set equipeSet) {
+        this.equipeSet = equipeSet;
+    }
 
     public Etudiant() {
+
     }
 
     public int getId() {

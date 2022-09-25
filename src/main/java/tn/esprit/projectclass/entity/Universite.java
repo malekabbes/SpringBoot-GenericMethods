@@ -1,11 +1,12 @@
 package tn.esprit.projectclass.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Universite {
-    @Id
+   @Id
     private int idUniv;
     private String nomUniv;
 

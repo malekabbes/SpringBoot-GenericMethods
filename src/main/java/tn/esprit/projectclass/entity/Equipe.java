@@ -1,6 +1,7 @@
 package tn.esprit.projectclass.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Equipe {
@@ -10,6 +11,16 @@ public class Equipe {
     @Enumerated(EnumType.STRING)
     @Column(name="Niveau")
     private Niveau niveau;
+    @ManyToMany(targetEntity=Etudiant.class)
+    private Set etudiantSet;
+
+    public Set getEtudiantSet() {
+        return etudiantSet;
+    }
+
+    public void setEtudiantSet(Set etudiantSet) {
+        this.etudiantSet = etudiantSet;
+    }
 
     public Equipe() {
     }

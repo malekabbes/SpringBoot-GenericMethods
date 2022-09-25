@@ -13,7 +13,18 @@ private Date dateDebutContrat;
 private Date dateFinContrat;
 @Enumerated(EnumType.ORDINAL)
 private Specialite specialite;
+
 private boolean archive;
+    @OneToOne
+    private Etudiant etudiant;
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
 
     public Contrat() {
     }
