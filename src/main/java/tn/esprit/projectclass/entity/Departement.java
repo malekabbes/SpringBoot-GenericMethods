@@ -1,24 +1,21 @@
 package tn.esprit.projectclass.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Departement {
     @Id
     private int idDepart;
     private String nomDepart;
-    @ManyToOne
-    private Universite universite;
+
+
+    @OneToMany(mappedBy = "department")
+    private Set<Etudiant> etudiant;
     public Departement() {
     }
 
-    public Universite getUniversite() {
-        return universite;
-    }
 
-    public void setUniversite(Universite universite) {
-        this.universite = universite;
-    }
 
     public Departement(int idDepart, String nomDepart) {
         this.idDepart = idDepart;

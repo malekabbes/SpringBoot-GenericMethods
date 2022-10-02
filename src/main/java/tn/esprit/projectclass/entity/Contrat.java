@@ -6,10 +6,11 @@ import java.util.Date;
 @Entity
 public class Contrat {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idContrat;
-
+    @Temporal(TemporalType.DATE)
 private Date dateDebutContrat;
+    @Temporal(TemporalType.DATE)
 private Date dateFinContrat;
 @Enumerated(EnumType.ORDINAL)
 private Specialite specialite;

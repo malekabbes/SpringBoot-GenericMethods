@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 @Entity
 public class Etudiant {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String prenomE;
@@ -12,9 +13,10 @@ public class Etudiant {
     private Option option;
     @ManyToOne
     private Departement department;
-    @ManyToMany(targetEntity=Equipe.class)
-    private Set equipeSet;
-
+    @ManyToMany
+    private Set<Equipe> equipe;
+    @OneToOne(mappedBy = "etudiant")
+    private Contrat contrat;
     public Departement getDepartment() {
         return department;
     }
@@ -23,12 +25,20 @@ public class Etudiant {
         this.department = department;
     }
 
-    public Set getEquipeSet() {
-        return equipeSet;
+    public Set<Equipe> getEquipe() {
+        return equipe;
     }
 
-    public void setEquipeSet(Set equipeSet) {
-        this.equipeSet = equipeSet;
+    public void setEquipe(Set<Equipe> equipe) {
+        this.equipe = equipe;
+    }
+
+    public Contrat getContrat() {
+        return contrat;
+    }
+
+    public void setContrat(Contrat contrat) {
+        this.contrat = contrat;
     }
 
     public Etudiant() {
@@ -67,3 +77,4 @@ public class Etudiant {
         this.option = option;
     }
 }
+

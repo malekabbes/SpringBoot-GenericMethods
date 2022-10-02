@@ -11,15 +11,15 @@ public class Equipe {
     @Enumerated(EnumType.STRING)
     @Column(name="Niveau")
     private Niveau niveau;
-    @ManyToMany(targetEntity=Etudiant.class)
-    private Set etudiantSet;
+    @ManyToMany(mappedBy ="equipe")
+    private Set<Etudiant> etudiant;
 
-    public Set getEtudiantSet() {
-        return etudiantSet;
+    public Set<Etudiant> getEtudiant() {
+        return etudiant;
     }
 
-    public void setEtudiantSet(Set etudiantSet) {
-        this.etudiantSet = etudiantSet;
+    public void setEtudiant(Set<Etudiant> etudiant) {
+        this.etudiant = etudiant;
     }
 
     public Equipe() {
