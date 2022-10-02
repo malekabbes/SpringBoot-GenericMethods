@@ -10,13 +10,14 @@ import tn.esprit.projectclass.repository.EtudiantRepository;
 import java.util.List;
 
 @Service
-public class ImpService implements IntService {
+public class ImpServiceE implements IntServiceC {
     @Autowired
 
     protected EtudiantRepository repo;
 
+
     @Override
-    public List<Etudiant> retrieveAllEtudiants() {
+    public List<Etudiant> findAll() throws Exception {
         try {
             return (List<Etudiant>) repo.findAll();
         } catch (Exception err) {
@@ -26,13 +27,18 @@ public class ImpService implements IntService {
     }
 
     @Override
-    public Etudiant addEtudiant(Etudiant e) {
+    public Etudiant save(Etudiant e) throws Exception {
         try {
             return repo.save(e);
         } catch (Exception err) {
             System.out.println("Un erreur survenue : " + err);
         }
         return e;
+    }
+
+    @Override
+    public void delete(Long id) throws Exception {
+        repo.deleteById(id);
     }
 
 
@@ -49,7 +55,7 @@ public class ImpService implements IntService {
     }
 
     @Override
-    public Etudiant updateEtudiant(Etudiant e,Integer id) {
+    public Etudiant updateEtudiant(Etudiant e, Integer id) {
         try{
             Etudiant etudiant=repo.findById(id).get();
             try{
@@ -74,10 +80,4 @@ public class ImpService implements IntService {
         }
         return e;
     }
-
-    @Override
-    public void removeEtudiant(Integer idEtudiant) {
-        repo.deleteById(idEtudiant);
-    }
-
 }
