@@ -10,7 +10,7 @@ import tn.esprit.projectclass.repository.EtudiantRepository;
 import java.util.List;
 
 @Service
-public class ImpServiceE implements IntServiceC {
+public class ImpServiceE implements IntServiceE {
     @Autowired
 
     protected EtudiantRepository repo;
@@ -37,7 +37,7 @@ public class ImpServiceE implements IntServiceC {
     }
 
     @Override
-    public void delete(Long id) throws Exception {
+    public void delete(int id) throws Exception {
         repo.deleteById(id);
     }
 
@@ -71,7 +71,7 @@ public class ImpServiceE implements IntServiceC {
     }
 
     @Override
-    public Etudiant retrieveEtudiant(Integer idEtudiant) {
+    public Etudiant retrieveEtudiant(int idEtudiant) {
         Etudiant e=repo.findById(idEtudiant).get();
         try {
             return e;

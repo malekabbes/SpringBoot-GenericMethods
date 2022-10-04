@@ -62,7 +62,7 @@ public class ImpServiceC implements IntServiceC {
     }
 
     @Override
-    public void delete(Long id) throws Exception {
+    public void delete(int id) throws Exception {
         repo.deleteById(id);
     }
 }

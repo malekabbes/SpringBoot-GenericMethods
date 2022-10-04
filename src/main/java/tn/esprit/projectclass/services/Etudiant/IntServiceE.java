@@ -5,8 +5,8 @@ import tn.esprit.projectclass.entity.Etudiant;
 import tn.esprit.projectclass.entity.Option;
 import tn.esprit.projectclass.services.IGeneric;
 
-public interface IntServiceC extends IGeneric<Etudiant> {
+public interface IntServiceE extends IGeneric<Etudiant> {
     public Etudiant addAndAssignEtudiant(Etudiant e, Option o, Departement d);
     public Etudiant updateEtudiant(Etudiant e,Integer id);
-    public Etudiant retrieveEtudiant(Integer idEtudiant);
+    public Etudiant retrieveEtudiant(int idEtudiant);
 }
