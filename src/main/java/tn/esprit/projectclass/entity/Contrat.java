@@ -6,8 +6,8 @@ import java.util.Date;
 @Entity
 public class Contrat {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int idContrat;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Temporal(TemporalType.DATE)
 private Date dateDebutContrat;
     @Temporal(TemporalType.DATE)
@@ -16,7 +16,7 @@ private Date dateFinContrat;
 private Specialite specialite;
 
 private boolean archive;
-    @OneToOne
+    @ManyToOne
     private Etudiant etudiant;
 
     public Etudiant getEtudiant() {
@@ -29,23 +29,6 @@ private boolean archive;
 
     public Contrat() {
     }
-
-    public Contrat(int idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite, boolean archive) {
-        this.idContrat = idContrat;
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.specialite = specialite;
-        this.archive = archive;
-    }
-
-    public int getIdContrat() {
-        return idContrat;
-    }
-
-    public void setIdContrat(int idContrat) {
-        this.idContrat = idContrat;
-    }
-
     public Date getDateDebutContrat() {
         return dateDebutContrat;
     }
@@ -72,6 +55,14 @@ private boolean archive;
 
     public boolean isArchive() {
         return archive;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setArchive(boolean archive) {

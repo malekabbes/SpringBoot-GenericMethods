@@ -1,15 +1,14 @@
 package tn.esprit.projectclass.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Universite {
-   @Id
-    private int idUniv;
+public class Universite  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nomUniv;
     @OneToMany
     private Set<Departement> department;
@@ -17,12 +16,12 @@ public class Universite {
     public Universite() {
     }
 
-    public int getIdUniv() {
-        return idUniv;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUniv(int idUniv) {
-        this.idUniv = idUniv;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomUniv() {

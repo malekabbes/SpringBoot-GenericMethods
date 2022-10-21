@@ -4,15 +4,20 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Equipe {
+public class Equipe  {
+
     @Id
-    private int idEquipe;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nomEquipe;
     @Enumerated(EnumType.STRING)
     @Column(name="Niveau")
     private Niveau niveau;
     @ManyToMany(mappedBy ="equipe")
     private Set<Etudiant> etudiant;
+
+    @OneToOne
+    private DetailEquipe detailEquipe;
 
     public Set<Etudiant> getEtudiant() {
         return etudiant;
@@ -23,20 +28,6 @@ public class Equipe {
     }
 
     public Equipe() {
-    }
-
-    public Equipe(int idEquipe, String nomEquipe, Niveau niveau) {
-        this.idEquipe = idEquipe;
-        this.nomEquipe = nomEquipe;
-        this.niveau = niveau;
-    }
-
-    public int getIdEquipe() {
-        return idEquipe;
-    }
-
-    public void setIdEquipe(int idEquipe) {
-        this.idEquipe = idEquipe;
     }
 
     public String getNomEquipe() {
@@ -53,5 +44,13 @@ public class Equipe {
 
     public void setNiveau(Niveau niveau) {
         this.niveau = niveau;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

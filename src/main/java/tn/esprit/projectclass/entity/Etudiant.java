@@ -3,9 +3,9 @@ package tn.esprit.projectclass.entity;
 import javax.persistence.*;
 import java.util.Set;
 @Entity
-public class Etudiant {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Etudiant  {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String prenomE;
     private String nomE;
@@ -15,8 +15,8 @@ public class Etudiant {
     private Departement department;
     @ManyToMany
     private Set<Equipe> equipe;
-    @OneToOne(mappedBy = "etudiant")
-    private Contrat contrat;
+    @OneToMany(mappedBy = "etudiant")
+    private Set<Contrat> contrat;
     public Departement getDepartment() {
         return department;
     }
@@ -33,24 +33,16 @@ public class Etudiant {
         this.equipe = equipe;
     }
 
-    public Contrat getContrat() {
+    public Set<Contrat> getContrat() {
         return contrat;
     }
 
-    public void setContrat(Contrat contrat) {
+    public void setContrat(Set<Contrat> contrat) {
         this.contrat = contrat;
     }
 
     public Etudiant() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getPrenomE() {
@@ -75,6 +67,14 @@ public class Etudiant {
 
     public void setOption(Option option) {
         this.option = option;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

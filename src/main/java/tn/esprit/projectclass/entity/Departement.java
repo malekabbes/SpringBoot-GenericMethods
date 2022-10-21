@@ -4,9 +4,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Departement {
+public class Departement{
     @Id
-    private int idDepart;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nomDepart;
 
 
@@ -15,23 +16,16 @@ public class Departement {
     public Departement() {
     }
 
-
-
-    public Departement(int idDepart, String nomDepart) {
-        this.idDepart = idDepart;
-        this.nomDepart = nomDepart;
-    }
-
-    public int getIdDepart() {
-        return idDepart;
-    }
-
-    public void setIdDepart(int idDepart) {
-        this.idDepart = idDepart;
-    }
-
     public String getNomDepart() {
         return nomDepart;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setNomDepart(String nomDepart) {
