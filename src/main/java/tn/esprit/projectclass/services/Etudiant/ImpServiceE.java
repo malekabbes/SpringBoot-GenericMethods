@@ -7,24 +7,37 @@ import tn.esprit.projectclass.Generic.ImplementationGeneric;
 import tn.esprit.projectclass.entity.Departement;
 import tn.esprit.projectclass.entity.Etudiant;
 import tn.esprit.projectclass.entity.Option;
-import tn.esprit.projectclass.repository.EtudiantRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 
 public class ImpServiceE extends ImplementationGeneric<Etudiant> implements InterfaceE{
-
+    @Autowired
    GenericRepository<Etudiant> repo;
+    @Autowired
+    GenericRepository<Departement> deprepo;
     @Override
-    public Etudiant addAndAssignEtudiant(Etudiant e, Option o, Departement d) {
+    public void addAndAssignEtudiant(Etudiant e, Option o, Departement d) {
         try{
             e.setOption(o);
             e.setDepartment(d);
-            return repo.save(e);
+            repo.save(e);
         }catch (Exception err){
             System.out.println("Un erreur survenue : "+err);
         }
-        return null;
+    }
+    @Override
+    public void assignEtudiantToDepartement(Integer etudiantId, Integer departementId) {
+        /*recuperation des objet*/
+        Etudiant etudiant = repo.findById(etudiantId).orElse(null);
+        Departement  departement = deprepo.findById(departementId).orElse(null);
+        if (etudiant!=null && departement!=null){
+            etudiant.setDepartment(departement);
+            repo.save(etudiant);
+        }
+        else{
+            System.out.println("NULL FOUND");
+        }
     }
 }

@@ -39,7 +39,7 @@ public class ImplementationGeneric<T> implements InterfaceGeneric<T>{
 
     @Override
     public T retrieve(int id) throws Exception {
-        T res=genericRepository.findById(id).get();
+        T res=genericRepository.findById(id).orElse(null);
         try {
             return res;
         } catch (Exception err) {

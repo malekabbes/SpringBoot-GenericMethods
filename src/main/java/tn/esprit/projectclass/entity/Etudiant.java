@@ -1,6 +1,7 @@
 package tn.esprit.projectclass.entity;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.Set;
 @Entity
 public class Etudiant  {
