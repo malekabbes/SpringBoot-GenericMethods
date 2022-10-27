@@ -51,7 +51,7 @@ public class DepartementController {
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Departement getStudent(@PathVariable int id) throws Exception {
+    public Departement getDepartement(@PathVariable int id) throws Exception {
         Departement DepartementResponse = (Departement) depservice.retrieve(id);
         return DepartementResponse;
     }
