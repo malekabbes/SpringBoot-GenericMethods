@@ -13,4 +13,5 @@ import java.util.Set;
 public interface InterfaceE extends InterfaceGeneric<Etudiant> {
     void addAndAssignEtudiant(Etudiant e, Option o, Departement d) throws Exception;
      void assignEtudiantToDepartement(Integer etudiantid,Integer departementId) throws Exception;
+     List<Etudiant> getEtudiantsByDepartement (Integer idDepartement) throws Exception;
 }
