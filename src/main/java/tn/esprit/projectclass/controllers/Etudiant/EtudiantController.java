@@ -1,16 +1,16 @@
 package tn.esprit.projectclass.controllers.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.projectclass.Generic.GenericRepository;
+import tn.esprit.projectclass.entity.Contrat;
 import tn.esprit.projectclass.entity.Departement;
 import tn.esprit.projectclass.entity.Etudiant;
 import tn.esprit.projectclass.entity.Option;
+import tn.esprit.projectclass.services.Contrat.ImpServiceC;
 import tn.esprit.projectclass.services.Departement.ImpServiceD;
 import tn.esprit.projectclass.services.Etudiant.ImpServiceE;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/student")
@@ -19,8 +19,10 @@ public class EtudiantController {
     @Autowired
     private ImpServiceE etudiantservice;
     @Autowired
+    private ImpServiceC contratservice;
+    @Autowired
     private ImpServiceD depservice;
-
+    public Contrat res;
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
 
@@ -105,4 +107,39 @@ public class EtudiantController {
         }
         return "ADDED STUDENT AND ASSIGNED TO DEPARTMENT";
     }
+    @RequestMapping(value="/assigneq/{idcontrat}/{idequipe}",method=RequestMethod.POST)
+    @ResponseBody
+    public String AssignEtudianttoEquipeandContrat(@RequestBody Etudiant e,@PathVariable int idcontrat,@PathVariable int idequipe){
+        try {
+            contratservice.addAndAssignEtudiantToEquipeAndContract(e,idcontrat,idequipe);
+        if (contratservice.Studentcheck){
+            return "Student exists already";
+        }
+        } catch (Exception err) {
+            throw new RuntimeException(err);
+        }
+        return "STUDENT ADDED AND ASSIGNED TO EQUIPE AND CONTRAT";
+    }
+
+    @RequestMapping(value="/affectcontrat/{nomE}/{prenomE}",method=RequestMethod.POST)
+    @ResponseBody
+    public String affectContratToEtudiant(@RequestBody Contrat c, @PathVariable String nomE, @PathVariable String prenomE){
+
+            if (contratservice.contratfull){
+                return "Limite de contrats atteinte";
+            } else{
+                try {
+                contratservice.affectContratToEtudiant(c, nomE, prenomE);
+
+        } catch (Exception err) {
+            throw new RuntimeException(err);
+        }
+            }
+        return "Le contrat a été affecté a l'etudiant";
+    }
+
+
+
+
+
 }

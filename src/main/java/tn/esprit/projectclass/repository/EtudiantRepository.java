@@ -10,6 +10,5 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface EtudiantRepository extends GenericRepository<Etudiant> {
-
-
+    Boolean existsByprenomE(String name);
 }

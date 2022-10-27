@@ -20,6 +20,14 @@ public class Universite  {
         return id;
     }
 
+    public Set<Departement> getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Set<Departement> department) {
+        this.department = department;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
