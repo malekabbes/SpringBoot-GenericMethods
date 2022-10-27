@@ -64,7 +64,9 @@ private boolean archive;
     public void setId(int id) {
         this.id = id;
     }
+    public boolean getArchive() {return archive;
 
+    }
     public void setArchive(boolean archive) {
         this.archive = archive;
     }
