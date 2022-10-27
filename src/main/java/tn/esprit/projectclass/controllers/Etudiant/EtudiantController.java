@@ -1,5 +1,6 @@
 package tn.esprit.projectclass.controllers.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.projectclass.entity.Contrat;
 import tn.esprit.projectclass.entity.Departement;
@@ -137,6 +138,14 @@ public class EtudiantController {
             }
         return "Le contrat a été affecté a l'etudiant";
     }
+    @RequestMapping(value="/department/{id}",method=RequestMethod.GET)
+    @ResponseBody
+    public List<Etudiant> getEtudiantsByDepartement(@PathVariable int id){
+      List<Etudiant> res=etudiantservice.getEtudiantsByDepartement(id);
+          return res;
+
+    }
+
 
 
 

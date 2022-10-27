@@ -47,7 +47,11 @@ public class ImpServiceE extends ImplementationGeneric<Etudiant> implements Inte
             System.out.println("NULL FOUND");
         }
     }
-
+    @Override
+    public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement){
+       List<Etudiant> depetudiants=repo.findEtudiantByDepartment_Id(idDepartement);
+       return depetudiants;
+    }
 
 
 
