@@ -29,7 +29,40 @@ public class ContratController {
         return null;
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteContrat(@PathVariable int id) {
+        try {
+            contratservice.delete(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "contrat supprimé";
+    }
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public String UpdateContrat(@RequestBody Contrat e,@PathVariable int id) {
+        try {
+            Contrat updateContrat= contratservice.retrieve(id);
+            if (updateContrat==null){
+                return "Contrat not found with id :";
+            }
+            updateContrat.setDateFinContrat(e.getDateFinContrat());
+            updateContrat.setArchive(e.getArchive());
+            contratservice.update(updateContrat);
 
+        } catch (Exception err) {
+            throw new RuntimeException(err);
+        }
+        return "Contrat modifié ";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Contrat getContrat(@PathVariable int id) throws Exception {
+        Contrat ContratResponse = (Contrat) contratservice.retrieve(id);
+        return ContratResponse;
+    }
 
 }
