@@ -1,4 +1,4 @@
-package tn.esprit.projectclass.controllers.Etudiant;
+package tn.esprit.projectclass.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.projectclass.entity.Contrat;
