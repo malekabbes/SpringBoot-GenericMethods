@@ -11,8 +11,11 @@ public class Departement{
     private String nomDepart;
 
 
+
     @OneToMany(mappedBy = "department")
     private Set<Etudiant> etudiant;
+
+
     public Departement() {
     }
 

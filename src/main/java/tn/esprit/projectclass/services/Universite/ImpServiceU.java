@@ -21,18 +21,5 @@ public class ImpServiceU extends ImplementationGeneric<Universite> implements In
     GenericRepository<Universite> repo;
     @Autowired
     GenericRepository<Departement> repodep;
-    @Override
-    public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement) {
-        try{
-            Universite unv=repo.findById(idDepartement).orElse(null);
-            Departement dep=repodep.findById(idUniversite).orElse(null);
-            if (unv!=null){
-              unv.setDepartment(Collections.singleton(dep));
-              repo.save(unv);
-            }
-        }catch(Exception err){
-            System.out.println("NULL FOUND");
 
-        }
-    }
 }

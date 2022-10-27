@@ -1,4 +1,4 @@
-package tn.esprit.projectclass.controllers.Etudiant;
+package tn.esprit.projectclass.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import tn.esprit.projectclass.services.Departement.ImpServiceD;
 import tn.esprit.projectclass.services.Etudiant.ImpServiceE;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/Departement")
@@ -71,6 +72,12 @@ public class DepartementController {
             throw new RuntimeException(err);
         }
         return "Departement has been updated successfully";
+    }
+    @RequestMapping(value = "/departments_universite/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Set<Departement> retrieveDepartementsByUniversite(@PathVariable int id){
+        Set<Departement> dep=depservice.retrieveDepartementsByUniversite(id);
+        return dep;
     }
 
 

@@ -24,8 +24,8 @@ public class Universite  {
         return department;
     }
 
-    public void setDepartment(Set<Departement> department) {
-        this.department = department;
+    public void setDepartment(Departement department) {
+        this.department.add(department);
     }
 
     public void setId(int id) {

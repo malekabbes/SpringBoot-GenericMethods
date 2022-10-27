@@ -1,10 +1,11 @@
-package tn.esprit.projectclass.controllers.Etudiant;
+package tn.esprit.projectclass.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.projectclass.entity.Contrat;
 import tn.esprit.projectclass.entity.Etudiant;
 import tn.esprit.projectclass.entity.Universite;
+import tn.esprit.projectclass.services.Departement.ImpServiceD;
 import tn.esprit.projectclass.services.Universite.ImpServiceU;
 
 @RestController
@@ -12,6 +13,9 @@ import tn.esprit.projectclass.services.Universite.ImpServiceU;
 public class UniversiteController {
     @Autowired
     private ImpServiceU serviceunv;
+    @Autowired
+    private ImpServiceD servicedp;
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Universite save(@RequestBody Universite con) throws Exception {
@@ -36,11 +40,11 @@ public class UniversiteController {
         return "University has been updated successfully";
     }
 
-    @RequestMapping(value = "/assign/{id}/{iddep}", method = RequestMethod.PUT )
+    @RequestMapping(value = "/assign/{id}/{iddep}", method = RequestMethod.POST )
     @ResponseBody
-    public String AssignDep(@PathVariable Integer iddep,@PathVariable Integer id){
+    public String AssignDep(@PathVariable int id,@PathVariable int iddep){
         try {
-            serviceunv.assignUniversiteToDepartement(id,iddep);
+            servicedp.assignUniversiteToDepartement(id,iddep);
         } catch (Exception err) {
             throw new RuntimeException(err);
         }
