@@ -50,6 +50,7 @@ public class ContratController {
             }
             updateContrat.setDateFinContrat(e.getDateFinContrat());
             updateContrat.setArchive(e.getArchive());
+            updateContrat.setSpecialite(e.getSpecialite());
             contratservice.update(updateContrat);
 
         } catch (Exception err) {

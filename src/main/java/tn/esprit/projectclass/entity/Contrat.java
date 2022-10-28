@@ -1,5 +1,8 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,11 +15,14 @@ public class Contrat {
 private Date dateDebutContrat;
     @Temporal(TemporalType.DATE)
 private Date dateFinContrat;
-@Enumerated(EnumType.ORDINAL)
+@Enumerated(EnumType.STRING)
 private Specialite specialite;
 
+private Integer montantContrat;
+
 private boolean archive;
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.PERSIST)
+    @JsonIgnore
     private Etudiant etudiant;
 
     public Etudiant getEtudiant() {
