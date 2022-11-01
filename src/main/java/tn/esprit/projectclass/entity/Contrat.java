@@ -19,8 +19,10 @@ private Date dateFinContrat;
 @Enumerated(EnumType.ORDINAL)
 private Specialite specialite;
 
-private boolean archive;
-    @ManyToOne (cascade = CascadeType.PERSIST)
+private Integer montantContrat;
+
+    private boolean archive;
+    @ManyToOne(cascade =CascadeType.PERSIST)
     @JsonIgnore
     private Etudiant etudiant;
 
@@ -74,5 +76,12 @@ private boolean archive;
     }
     public void setArchive(boolean archive) {
         this.archive = archive;
+    }
+    public Integer getMontantContrat() {
+        return montantContrat;
+    }
+
+    public void setMontantContrat(Integer montantContrat) {
+        this.montantContrat = montantContrat;
     }
 }

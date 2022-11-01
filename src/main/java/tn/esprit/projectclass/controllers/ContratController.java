@@ -50,6 +50,7 @@ public class ContratController {
             }
             updateContrat.setDateFinContrat(e.getDateFinContrat());
             updateContrat.setArchive(e.getArchive());
+            updateContrat.setSpecialite(e.getSpecialite());
             contratservice.update(updateContrat);
 
         } catch (Exception err) {
@@ -64,5 +65,14 @@ public class ContratController {
         Contrat ContratResponse = (Contrat) contratservice.retrieve(id);
         return ContratResponse;
     }
+
+    @RequestMapping(value = "/chiffreaffaire", method = RequestMethod.GET)
+    @ResponseBody
+    public float GetChiffreAffaire(@RequestBody Contrat e ) throws Exception {
+        float chiffreaffaire = contratservice.getChiffreAffaireEntreDeuxDate(e.getDateDebutContrat(),e.getDateFinContrat());
+        return chiffreaffaire;
+    }
+
+
 
 }

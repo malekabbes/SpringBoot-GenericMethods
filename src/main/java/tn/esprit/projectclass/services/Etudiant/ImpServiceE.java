@@ -5,12 +5,10 @@ import org.springframework.stereotype.Service;
 import tn.esprit.projectclass.Generic.GenericRepository;
 import tn.esprit.projectclass.Generic.ImplementationGeneric;
 import tn.esprit.projectclass.entity.*;
-import tn.esprit.projectclass.repository.ContratRepository;
 import tn.esprit.projectclass.repository.EtudiantRepository;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Service
 
@@ -22,7 +20,8 @@ public class ImpServiceE extends ImplementationGeneric<Etudiant,Integer> impleme
 
     @Autowired
     GenericRepository<Equipe,Integer> eqrepo;
-
+    @Autowired
+    GenericRepository<Contrat,Integer> crepo;
     public boolean contratfull=false;
     @Override
     public void addAndAssignEtudiant(Etudiant e, Option o, Departement d) {

@@ -1,7 +1,9 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +15,13 @@ public class Departement{
     private int id;
     private String nomDepart;
 
+    public Set<Etudiant> getEtudiant() {
+        return etudiant;
+    }
 
+    public void setEtudiant(Set<Etudiant> etudiant) {
+        this.etudiant = etudiant;
+    }
 
     @OneToMany(mappedBy = "department")
     @JsonIgnore

@@ -1,5 +1,7 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class Equipe  {
     @Column(name="Niveau")
     private Niveau niveau;
     @ManyToMany(mappedBy ="equipe")
+    @JsonIgnore
     private Set<Etudiant> etudiant;
 
     @OneToOne

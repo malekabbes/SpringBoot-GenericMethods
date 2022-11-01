@@ -1,12 +1,17 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Optional;
 import java.util.Set;
+
+
 @Entity
+
 public class Etudiant  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +20,8 @@ public class Etudiant  {
     private String nomE;
     @Enumerated(EnumType.STRING)
     private Option option;
-    @ManyToOne (cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties("department")
+    @ManyToOne(cascade =CascadeType.PERSIST)
+    @JsonIgnore
     private Departement department;
     @ManyToMany
     private Set<Equipe> equipe;

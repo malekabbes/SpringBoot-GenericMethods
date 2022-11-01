@@ -8,4 +8,5 @@ import java.util.List;
 public interface EtudiantRepository extends GenericRepository<Etudiant,Integer> {
     Boolean existsByprenomE(String name);
     List<Etudiant> findEtudiantByDepartment_Id(Integer idDepartement);
+    Etudiant findEtudiantByNomEAndPrenomE(String nomE,String prenomE);
 }

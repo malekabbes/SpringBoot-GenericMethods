@@ -12,7 +12,9 @@ import tn.esprit.projectclass.repository.ContratRepository;
 import tn.esprit.projectclass.repository.EtudiantRepository;
 import tn.esprit.projectclass.services.Etudiant.InterfaceE;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -61,7 +63,8 @@ public class ImpServiceC extends ImplementationGeneric<Contrat,Integer> implemen
     }
     @Override
     public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE) throws Exception {
-        Etudiant etudiant = findByNomAndPrenom(nomE,prenomE);
+        // Etudiant etudiant = findByNomAndPrenom(nomE,prenomE);
+        Etudiant etudiant=repo.findEtudiantByNomEAndPrenomE(nomE,prenomE);
         List<Contrat> list= crepo.findContratByEtudiant_Id(etudiant.getId());
         if (list.size()>=5){
             contratfull=true;
@@ -73,5 +76,49 @@ public class ImpServiceC extends ImplementationGeneric<Contrat,Integer> implemen
         }
         return ce;
 
+    }
+    public List<Contrat> ContratsValides(Date startDate, Date endDate){
+          List<Contrat> list = crepo.findAll();
+          ArrayList<Contrat> contratvalides=new ArrayList<Contrat>();
+        for (Contrat c : list){
+            Date datedebut=c.getDateDebutContrat();
+            Date datefin=c.getDateFinContrat();
+            if (startDate.after(datedebut) && endDate.before(datefin) && !c.isArchive()){
+                contratvalides.add(c);
+            }
+        }
+        return contratvalides;
+    }
+    public Integer nbContratsValides(Date startDate, Date endDate){
+        List<Contrat> list = crepo.findAll();
+        int nbContratvalides=0;
+        for (Contrat c : list){
+            Date datedebut=c.getDateDebutContrat();
+            Date datefin=c.getDateFinContrat();
+            if (startDate.after(datedebut) && endDate.before(datefin) && !c.isArchive()){
+                nbContratvalides++;
+            }
+        }
+        return nbContratvalides;
+    }
+    public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate){
+        List<Contrat> list=ContratsValides(startDate,endDate);
+        System.out.println(list);
+        float montant=0;
+        for (Contrat c: list){
+            if(c.getSpecialite().name().equals("IA")){
+               montant+=300;
+            } else if(c.getSpecialite().name().equals("RESEAUX")){
+                montant+=350;
+            } else if(c.getSpecialite().name().equals("CLOUD")){
+                montant+=400;
+            } else if(c.getSpecialite().name().equals("SECURITE")){
+                montant+=450;
+            } else {
+                montant+=0;
+            }
+        }
+        System.out.println(montant);
+        return montant;
     }
 }
