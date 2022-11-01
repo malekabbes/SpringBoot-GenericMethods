@@ -30,26 +30,7 @@ public class ImpServiceC extends ImplementationGeneric<Contrat> implements Inter
     public boolean Studentcheck;
     public boolean contratfull=false;
 
-    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe){
-        try {
-            Contrat contrat=crepo.findById(idContrat).orElse(null);
-            Equipe equipe=eqrepo.findById(idEquipe).orElse(null);
-            try {
-                Studentcheck=repo.existsByprenomE(e.getPrenomE());
-                System.out.println("Studentcheck = " + Studentcheck);
-                if (!Studentcheck){
-                    e.setEquipe(Collections.singleton(equipe));
-                    contrat.setEtudiant(e);
-                    repo.save(e);
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Student exists already",ex);
-            }
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-        return e;
-    }
+
     public Etudiant findByNomAndPrenom(String nomE, String prenomE) {
         List<Etudiant> list = repo.findAll();
         Etudiant e=new Etudiant();
@@ -65,10 +46,16 @@ public class ImpServiceC extends ImplementationGeneric<Contrat> implements Inter
     public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE) throws Exception {
         // Etudiant etudiant = findByNomAndPrenom(nomE,prenomE);
         Etudiant etudiant=repo.findEtudiantByNomEAndPrenomE(nomE,prenomE);
-        List<Contrat> list= crepo.findContratByEtudiant_Id(etudiant.getId());
-        if (list.size()>=5){
-            contratfull=true;
+        if (etudiant!=null) {
+            //List<Contrat> list = crepo.findContratByEtudiant_IdAAndArchiveFalse(etudiant.getId());
+            int nbrcontrat=crepo.countByArchiveIsFalseAndEtudiantNomEAndEtudiantPrenomE(nomE,prenomE);
+            if (nbrcontrat>=5){
+                contratfull=true;
+            }
         }
+// nbContratsValides = etudiant.getContrat().stream().
+        // .filter(contrat -> !contrat.isArchive())
+        //
         if (!contratfull){
             ce.setEtudiant(etudiant);
             crepo.save(ce);

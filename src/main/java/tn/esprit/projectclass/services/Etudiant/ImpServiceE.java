@@ -7,8 +7,11 @@ import tn.esprit.projectclass.Generic.ImplementationGeneric;
 import tn.esprit.projectclass.entity.*;
 import tn.esprit.projectclass.repository.EtudiantRepository;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 
@@ -52,6 +55,23 @@ public class ImpServiceE extends ImplementationGeneric<Etudiant> implements Inte
     public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement){
        List<Etudiant> depetudiants=repo.findEtudiantByDepartment_Id(idDepartement);
        return depetudiants;
+    }
+    @Transactional
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe){
+        try {
+            Contrat contrat=crepo.findById(idContrat).orElse(null);
+            Equipe equipe=eqrepo.findById(idEquipe).orElse(null);
+            Etudiant etudiant= new Etudiant();
+            if (contrat !=null && equipe !=null){
+                etudiant=repo.save(e);
+                etudiant.setEquipe(Collections.singleton(equipe));
+                contrat.setEtudiant(etudiant);
+                return etudiant;
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return e;
     }
 
 

@@ -9,5 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface ContratRepository extends GenericRepository<Contrat> {
- List<Contrat> findContratByEtudiant_Id(int id);
+ List<Contrat> findContratByEtudiant_IdAndArchiveFalse(int id);
+ int countByArchiveIsFalseAndEtudiantNomEAndEtudiantPrenomE(String nomE,String prenomE);
 }

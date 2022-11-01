@@ -112,7 +112,7 @@ public class EtudiantController {
     @ResponseBody
     public String AssignEtudianttoEquipeandContrat(@RequestBody Etudiant e,@PathVariable int idcontrat,@PathVariable int idequipe){
         try {
-            contratservice.addAndAssignEtudiantToEquipeAndContract(e,idcontrat,idequipe);
+            etudiantservice.addAndAssignEtudiantToEquipeAndContract(e,idcontrat,idequipe);
         if (contratservice.Studentcheck){
             return "Student exists already";
         }
