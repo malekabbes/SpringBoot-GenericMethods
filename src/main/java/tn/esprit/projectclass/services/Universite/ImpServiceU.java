@@ -16,10 +16,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class ImpServiceU extends ImplementationGeneric<Universite> implements InterfaceU {
+public class ImpServiceU extends ImplementationGeneric<Universite,Integer> implements InterfaceU {
     @Autowired
-    GenericRepository<Universite> repo;
+    GenericRepository<Universite,Integer> repo;
     @Autowired
-    GenericRepository<Departement> repodep;
+    GenericRepository<Departement,Integer> repodep;
 
 }

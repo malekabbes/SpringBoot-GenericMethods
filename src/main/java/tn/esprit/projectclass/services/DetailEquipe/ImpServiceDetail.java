@@ -6,5 +6,5 @@ import tn.esprit.projectclass.entity.DetailEquipe;
 import tn.esprit.projectclass.Generic.InterfaceGeneric;
 
 @Service
-public class ImpServiceDetail extends ImplementationGeneric<DetailEquipe> {
+public class ImpServiceDetail extends ImplementationGeneric<DetailEquipe,Integer> {
 }

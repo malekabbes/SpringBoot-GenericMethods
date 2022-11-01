@@ -8,5 +8,5 @@ import tn.esprit.projectclass.entity.Equipe;
 
 import java.io.Serializable;
 
-public interface EquipeRepository extends GenericRepository<Equipe> {
+public interface EquipeRepository extends GenericRepository<Equipe,Integer> {
 }

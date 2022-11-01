@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class ImpServiceD extends ImplementationGeneric<Departement> implements InterfaceD {
+public class ImpServiceD extends ImplementationGeneric<Departement,Integer> implements InterfaceD {
     @Autowired
-    GenericRepository<Universite> repo;
+    GenericRepository<Universite,Integer> repo;
     @Autowired
-    GenericRepository<Departement> repodep;
+    GenericRepository<Departement,Integer> repodep;
 
     @Override
     public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement) {

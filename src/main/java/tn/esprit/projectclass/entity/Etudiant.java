@@ -26,6 +26,8 @@ public class Etudiant  {
     @ManyToMany
     private Set<Equipe> equipe;
     @OneToMany(mappedBy = "etudiant")
+    @JsonIgnore
+
     private Set<Contrat> contrat;
     public Departement getDepartment() {
         return department;
