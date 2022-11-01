@@ -16,7 +16,7 @@ public class Contrat {
 private Date dateDebutContrat;
     @Temporal(TemporalType.DATE)
 private Date dateFinContrat;
-@Enumerated(EnumType.ORDINAL)
+@Enumerated(EnumType.STRING)
 private Specialite specialite;
 
 private Integer montantContrat;
