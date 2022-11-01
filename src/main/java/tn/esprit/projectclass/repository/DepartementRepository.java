@@ -8,6 +8,6 @@ import tn.esprit.projectclass.entity.Departement;
 
 import java.io.Serializable;
 
-public interface DepartementRepository extends GenericRepository<Departement> {
+public interface DepartementRepository extends GenericRepository<Departement,Integer> {
 
 }

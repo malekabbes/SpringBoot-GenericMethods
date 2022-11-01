@@ -8,6 +8,6 @@ import tn.esprit.projectclass.entity.Contrat;
 import java.io.Serializable;
 import java.util.List;
 
-public interface ContratRepository extends GenericRepository<Contrat> {
- List<Contrat> findContratByEtudiant_Id(int id);
+public interface ContratRepository extends GenericRepository<Contrat, Integer> {
+ List<Contrat> findContratByEtudiant_Id(Integer id);
 }

@@ -16,15 +16,15 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class ImpServiceC extends ImplementationGeneric<Contrat> implements InterfaceC {
+public class ImpServiceC extends ImplementationGeneric<Contrat,Integer> implements InterfaceC {
     @Autowired
     EtudiantRepository repo;
     @Autowired
-    GenericRepository<Departement> deprepo;
+    GenericRepository<Departement,Integer> deprepo;
     @Autowired
     ContratRepository crepo;
     @Autowired
-    GenericRepository<Equipe> eqrepo;
+    GenericRepository<Equipe,Integer> eqrepo;
     public boolean Studentcheck;
     public boolean contratfull=false;
 

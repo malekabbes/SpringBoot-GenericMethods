@@ -1,5 +1,8 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Optional;
 import java.util.Set;
@@ -12,11 +15,14 @@ public class Etudiant  {
     private String nomE;
     @Enumerated(EnumType.STRING)
     private Option option;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties("department")
     private Departement department;
     @ManyToMany
     private Set<Equipe> equipe;
     @OneToMany(mappedBy = "etudiant")
+    @JsonIgnore
+
     private Set<Contrat> contrat;
     public Departement getDepartment() {
         return department;

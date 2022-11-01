@@ -1,9 +1,13 @@
 package tn.esprit.projectclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+
 public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +20,8 @@ private Date dateFinContrat;
 private Specialite specialite;
 
 private boolean archive;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private Etudiant etudiant;
 
     public Etudiant getEtudiant() {

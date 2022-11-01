@@ -5,7 +5,7 @@ import tn.esprit.projectclass.entity.Etudiant;
 
 import java.util.List;
 
-public interface EtudiantRepository extends GenericRepository<Etudiant> {
+public interface EtudiantRepository extends GenericRepository<Etudiant,Integer> {
     Boolean existsByprenomE(String name);
     List<Etudiant> findEtudiantByDepartment_Id(Integer idDepartement);
 }
