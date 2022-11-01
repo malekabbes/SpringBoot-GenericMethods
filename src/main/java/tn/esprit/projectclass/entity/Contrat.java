@@ -20,7 +20,15 @@ private Specialite specialite;
 
 private Integer montantContrat;
 
-private boolean archive;
+    public Integer getMontantContrat() {
+        return montantContrat;
+    }
+
+    public void setMontantContrat(Integer montantContrat) {
+        this.montantContrat = montantContrat;
+    }
+
+    private boolean archive;
     @ManyToOne(cascade =CascadeType.PERSIST)
     @JsonIgnore
     private Etudiant etudiant;

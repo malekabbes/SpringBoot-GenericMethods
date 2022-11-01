@@ -66,4 +66,13 @@ public class ContratController {
         return ContratResponse;
     }
 
+    @RequestMapping(value = "/chiffreaffaire", method = RequestMethod.GET)
+    @ResponseBody
+    public float GetChiffreAffaire(@RequestBody Contrat e ) throws Exception {
+        float chiffreaffaire = contratservice.getChiffreAffaireEntreDeuxDate(e.getDateDebutContrat(),e.getDateFinContrat());
+        return chiffreaffaire;
+    }
+
+
+
 }
