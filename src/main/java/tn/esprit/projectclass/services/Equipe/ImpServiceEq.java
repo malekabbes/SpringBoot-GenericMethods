@@ -12,6 +12,6 @@ import tn.esprit.projectclass.repository.EquipeRepository;
 import java.util.List;
 
 @Service
-public class ImpServiceEq extends ImplementationGeneric<Equipe> {
+public class ImpServiceEq extends ImplementationGeneric<Equipe,Integer> {
 
 }

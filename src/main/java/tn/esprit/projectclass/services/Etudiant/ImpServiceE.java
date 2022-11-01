@@ -15,18 +15,16 @@ import java.util.Set;
 
 @Service
 
-public class ImpServiceE extends ImplementationGeneric<Etudiant> implements InterfaceE{
+public class ImpServiceE extends ImplementationGeneric<Etudiant,Integer> implements InterfaceE{
     @Autowired
     EtudiantRepository repo;
     @Autowired
-    GenericRepository<Departement> deprepo;
+    GenericRepository<Departement,Integer> deprepo;
 
     @Autowired
-    GenericRepository<Equipe> eqrepo;
+    GenericRepository<Equipe,Integer> eqrepo;
     @Autowired
-    GenericRepository<Contrat> crepo;
-
-
+    GenericRepository<Contrat,Integer> crepo;
     public boolean contratfull=false;
     @Override
     public void addAndAssignEtudiant(Etudiant e, Option o, Departement d) {

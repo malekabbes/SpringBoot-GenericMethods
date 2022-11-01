@@ -8,6 +8,6 @@ import tn.esprit.projectclass.entity.Universite;
 import java.io.Serializable;
 import java.util.List;
 
-public interface UniversiteRepository extends GenericRepository<Universite> {
+public interface UniversiteRepository extends GenericRepository<Universite,Integer> {
 
 }

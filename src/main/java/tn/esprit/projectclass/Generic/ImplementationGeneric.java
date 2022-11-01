@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-public class ImplementationGeneric<T> implements InterfaceGeneric<T>{
+public class ImplementationGeneric<T,ID> implements InterfaceGeneric<T,ID>{
     @Autowired
-    public GenericRepository<T> genericRepository;
+    public GenericRepository<T,ID> genericRepository;
 
     @Override
     public List<T> findAll() throws Exception {
@@ -28,7 +28,7 @@ public class ImplementationGeneric<T> implements InterfaceGeneric<T>{
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(ID id) throws Exception {
         try {
             genericRepository.deleteById(id);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class ImplementationGeneric<T> implements InterfaceGeneric<T>{
 
 
     @Override
-    public T retrieve(int id) throws Exception {
+    public T retrieve(ID id) throws Exception {
         T res=genericRepository.findById(id).orElse(null);
         try {
             return res;

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+
 public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,18 +16,10 @@ public class Contrat {
 private Date dateDebutContrat;
     @Temporal(TemporalType.DATE)
 private Date dateFinContrat;
-@Enumerated(EnumType.STRING)
+@Enumerated(EnumType.ORDINAL)
 private Specialite specialite;
 
 private Integer montantContrat;
-
-    public Integer getMontantContrat() {
-        return montantContrat;
-    }
-
-    public void setMontantContrat(Integer montantContrat) {
-        this.montantContrat = montantContrat;
-    }
 
     private boolean archive;
     @ManyToOne(cascade =CascadeType.PERSIST)
@@ -83,5 +76,12 @@ private Integer montantContrat;
     }
     public void setArchive(boolean archive) {
         this.archive = archive;
+    }
+    public Integer getMontantContrat() {
+        return montantContrat;
+    }
+
+    public void setMontantContrat(Integer montantContrat) {
+        this.montantContrat = montantContrat;
     }
 }

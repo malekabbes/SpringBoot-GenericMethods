@@ -24,6 +24,7 @@ public class Departement{
     }
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Etudiant> etudiant;
 
 
