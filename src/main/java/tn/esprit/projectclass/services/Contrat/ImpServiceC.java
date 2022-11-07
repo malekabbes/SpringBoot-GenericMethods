@@ -1,6 +1,7 @@
 package tn.esprit.projectclass.services.Contrat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.projectclass.Generic.GenericRepository;
 import tn.esprit.projectclass.Generic.ImplementationGeneric;
@@ -12,6 +13,7 @@ import tn.esprit.projectclass.repository.ContratRepository;
 import tn.esprit.projectclass.repository.EtudiantRepository;
 import tn.esprit.projectclass.services.Etudiant.InterfaceE;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -107,5 +109,43 @@ public class ImpServiceC extends ImplementationGeneric<Contrat,Integer> implemen
         }
         System.out.println(montant);
         return montant;
+    }
+    @Scheduled(fixedRate = 3000)
+    public String retrieveAndUpdateStatusContrat() throws Exception {
+        List<Contrat> contrats = this.findAll();
+        List<String> contratsValides = new ArrayList<>();
+        List<String> contratfini = new ArrayList<>();
+        String contrat = "";
+        String contratInfo = "" ;
+        for (Contrat c : contrats) {
+            try {
+                Date datefin = c.getDateFinContrat();
+                Date today = java.sql.Date.valueOf(java.time.LocalDate.now());
+                contratInfo = "Contrat [ " +"\n" +" ContratId :" + c.getId() + " \n" +
+                        " dateFin : "+ datefin + " \n"+ " Etudiant : " +c.getEtudiant().getNomE() + " " +
+                        "  " +c.getEtudiant().getPrenomE() + "\n"+" Specialite : " + c.getSpecialite() + " ] ";
+                if (c.isArchive()) {
+                    if (datefin.getTime() - today.getTime() > 15) {
+                        contratsValides.add(contratInfo);
+                        contrat = contrat.concat("List de Contrat a revoir " + contratsValides.toString()+"\n");
+                    }
+                }
+                boolean b = datefin.compareTo(today) == 0 && LocalDateTime.now().getHour() == 13;
+
+                if (b) {
+                    contratfini.add(contratInfo);
+                    contrat = contrat.concat("List de Contrat fini"+contratfini.toString());
+                    c = this.retrieve(c.getId());
+                    c.setArchive(true);
+                    this.update(c);
+                }
+            } catch (NullPointerException e) {
+                e.getCause();
+                // System.out.println("null");
+            }
+        }
+        Thread.sleep(2000);
+        System.out.println(contrat);
+        return  contrat;
     }
 }

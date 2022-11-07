@@ -13,13 +13,11 @@ public class ContratController {
     @Autowired
     private ImpServiceC contratservice;
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseBody
     public Contrat save(@RequestBody Contrat con) throws Exception {
         Contrat ContratResponse = (Contrat) contratservice.save(con);
         return ContratResponse;
     }
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ResponseBody
     public List<Contrat> findAll() {
         try {
             return contratservice.findAll();
@@ -30,7 +28,6 @@ public class ContratController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
     public String deleteContrat(@PathVariable int id) {
         try {
             contratservice.delete(id);
@@ -41,7 +38,6 @@ public class ContratController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
-    @ResponseBody
     public String UpdateContrat(@RequestBody Contrat e,@PathVariable int id) {
         try {
             Contrat updateContrat= contratservice.retrieve(id);
@@ -60,19 +56,20 @@ public class ContratController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
     public Contrat getContrat(@PathVariable int id) throws Exception {
         Contrat ContratResponse = (Contrat) contratservice.retrieve(id);
         return ContratResponse;
     }
 
     @RequestMapping(value = "/chiffreaffaire", method = RequestMethod.GET)
-    @ResponseBody
     public float GetChiffreAffaire(@RequestBody Contrat e ) throws Exception {
         float chiffreaffaire = contratservice.getChiffreAffaireEntreDeuxDate(e.getDateDebutContrat(),e.getDateFinContrat());
         return chiffreaffaire;
     }
-
+    @RequestMapping(value = "/statuscontrat", method = RequestMethod.GET)
+    public String retrieveAndUpdateStatusContrat() throws Exception {
+        return contratservice.retrieveAndUpdateStatusContrat();
+    }
 
 
 }
